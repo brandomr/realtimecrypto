@@ -1,0 +1,53 @@
+version: "3"
+services:
+  kafka:
+    image: spotify/kafka
+    container_name: kafka-node
+    ports:
+      - "9092:9092"
+      - "2181:2181"
+    expose:
+      - "9092"
+      - "2181"
+    environment:
+      - ADVERTISED_HOST=kafka-node
+      - ADVERTISED_PORT=9092        
+  spark:
+    image: jupyter/pyspark-notebook
+    container_name: spark-node
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      - .:/home/jovyan/
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    container_name: elasticsearch-node
+    ports: 
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./volumes/es:/usr/share/elasticsearch/data
+    environment:
+      - "discovery.type=single-node"      
+      - "xpack.security.enabled=false"
+      - "xpack.monitoring.enabled=false"
+      - "cluster.routing.allocation.disk.threshold_enabled=false"
+      - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
+    ulimits:
+      nproc: 3000
+      nofile: 65536
+      memlock: -1
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.3
+    container_name: kibana-node
+    ports:
+      - "5601:5601"
+    environment:
+     - "xpack.security.enabled=false"
+     - "xpack.monitoring.enabled=false"  
+     - "ELASTICSEARCH_URL=http://elasticsearch-node:9200"  
