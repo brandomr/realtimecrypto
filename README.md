@@ -4,7 +4,7 @@
 
 This repo contains the code and materials for the [Real-Time Crypto](http:/realtimecrypto.io). The documentation and code commenting is purposefully sparse in this repository. If you are interested in learning more please check out the book [Real-Time Crypto](http:/realtimecrypto.io) which is available for Kindle, as a PDF, or a standard eBook.
 
-Learn how to use Bitcoin data to train an algorithm that to execute crypto trades in real-time. Gain insight into blockchain and big data architectures. Walk away with the know how to build a quantitative trading pipeline on your own.
+Learn how to use Bitcoin data to train an algorithm to execute crypto trades in real-time. Gain insight into blockchain and big data architectures. Walk away with the know how to build a quantitative trading pipeline on your own.
 
 ### A big data approach to analyzing & automating cryptocurrency trading
 
